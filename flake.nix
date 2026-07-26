@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration for computa";
+  description = "NixOS configuration for computah";
 
   inputs = {
     # The OS base: stable, tested, updated with security fixes.
@@ -26,8 +26,8 @@
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
-    # `nixos-rebuild switch --flake .#computa` selects this attribute.
-    nixosConfigurations.computa = nixpkgs.lib.nixosSystem {
+    # `nixos-rebuild switch --flake .#computah` selects this attribute.
+    nixosConfigurations.computah = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 
       # Makes `inputs` visible inside every module (configuration.nix, home.nix...),

@@ -20,7 +20,7 @@
 
   ###### Identity & networking ################################################
 
-  networking.hostName = "computa";
+  networking.hostName = "computah";
 
   # NetworkManager handles wired DHCP out of the box. Your MoCA
   # (Ethernet-over-coax) adapter presents itself as ordinary Ethernet,
@@ -81,8 +81,8 @@
   environment.shellAliases = {
     # The alias you asked about. Lives in the config, so it's versioned and
     # identical on every machine that uses this flake.
-    rebuild = "sudo nixos-rebuild switch --flake /home/aggi/nixos-config#computa";
-    update  = "cd /home/aggi/nixos-config && nix flake update && sudo nixos-rebuild switch --flake .#computa";
+    rebuild = "sudo nixos-rebuild switch --flake /home/aggi/nixos-config#computah";
+    update  = "cd /home/aggi/nixos-config && nix flake update && sudo nixos-rebuild switch --flake .#computah";
   };
 
   ###### Do not touch #########################################################

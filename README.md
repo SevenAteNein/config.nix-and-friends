@@ -1,6 +1,6 @@
-# computa — NixOS configuration
+# computah — NixOS configuration
 
-Flake-based NixOS 26.05 for the machine `computa`, user `aggi`.
+Flake-based NixOS 26.05 for the machine `computah`, user `aggi`.
 Hyprland + Noctalia desktop, German system language, five input systems,
 AMD 7800X3D / RX 9070 XT hardware support.
 
@@ -8,7 +8,7 @@ AMD 7800X3D / RX 9070 XT hardware support.
 
 ```
 flake.nix                    inputs (nixpkgs, home-manager, noctalia) + the
-                             `computa` system definition. The entry point.
+                             `computah` system definition. The entry point.
 flake.lock                   appears after the first build; pins every input
                              to exact commits. COMMIT IT — it is what makes
                              the config reproducible.
@@ -38,7 +38,7 @@ On any machine with git:
 cd nixos-config
 git init
 git add .
-git commit -m "initial config for computa"
+git commit -m "initial config for computah"
 # create an empty repo named nixos-config on github.com, then:
 git remote add origin https://github.com/YOURNAME/nixos-config.git
 git push -u origin main
@@ -128,14 +128,14 @@ git add hardware-configuration.nix
 ```
 
 This is the "where everything integrates" moment: the repo carries the
-universal description of `computa`; `hardware-configuration.nix` is the one
+universal description of `computah`; `hardware-configuration.nix` is the one
 piece of local truth (filesystem UUIDs, required kernel modules) that welds it
 to a particular box.
 
 ## Step 5 — install and reboot
 
 ```
-nixos-install --flake .#computa
+nixos-install --flake .#computah
 # builds everything; asks you to set the ROOT password at the end
 reboot
 ```
@@ -151,7 +151,7 @@ sudo chown -R aggi:users ~/nixos-config
 Then push the now-married hardware file back up:
 
 ```
-cd ~/nixos-config && git commit -am "add computa hardware config" && git push
+cd ~/nixos-config && git commit -am "add computah hardware config" && git push
 ```
 
 ## Step 6 — first-boot configuration (the deliberately-imperative bits)
