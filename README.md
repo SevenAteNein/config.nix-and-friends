@@ -1,4 +1,5 @@
 # These are my configs for a NixOS home workstation
+## Gen. 2
 
 Flake-based NixOS 26.05 for the machine `computah`, user `aggi`.
 Hyprland + Noctalia desktop, German system language, five input systems,
