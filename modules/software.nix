@@ -15,13 +15,15 @@
     nix-diff	 # "why did this rebuild? -- illustrates diff between two derivs
 
     ###### utilities ##########################################################
-    impression                 # bootable disk utility
+    impression             # bootable disk utility
     networkmanagerapplet   # GUI for NetworkManager connections (the VPN toggle
 			   # window 
     gparted		   # partition manager -- for USB sticks and foreign disks
     mission-center	   # GUI system monitor
     kdePackages.dolphin	   # Qt/Noctalia-respecting graphical file manager
     kdePackages.qrca	   # QR code maker and parser
+    fastfetch
+    chafa                  # Terminal image-to-ASCII utility
 
     ###### browsers & communication ###########################################
     tor-browser            # stable channel, deliberately unmodified: Tor's
@@ -52,8 +54,11 @@
     vlc
     krita
     gimp
-    bambu-studio
+### bambu-studio
     davinci-resolve
+    ascii-draw		   # GUI image-to-ASCII utility
+    newmacs		   # Image viewer
+    calligraphy 	   # ASCII-art banner generation utility
 
     ###### office & research ##################################################
     libreoffice-qt6-fresh  # the whole suite: Writer, Calc, Impress.
