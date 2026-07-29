@@ -1,10 +1,11 @@
-# computah — NixOS configuration
+# These are my configs for a NixOS home workstation
 
 Flake-based NixOS 26.05 for the machine `computah`, user `aggi`.
 Hyprland + Noctalia desktop, German system language, five input systems,
-AMD 7800X3D / RX 9070 XT hardware support.
+AMD CPU and GPU hardware support. Build first in VM through SSH, later ported
+to metal.
 
-## Repo map — where everything lives
+## Repo map
 
 ```
 flake.nix                    inputs (nixpkgs, home-manager, noctalia) + the
@@ -27,10 +28,10 @@ home.nix                     aggi's user space: Noctalia, Hyprland keybinds,
 
 The general principle: **system-wide things** (drivers, services, login
 manager, packages for all users) live in `configuration.nix`/`modules/`;
-**your personal environment** (keybinds, dotfiles, per-user app config) lives
+The user's **personal(ized) environment** (keybinds, dotfiles, per-user app config) lives
 in `home.nix`. Both are applied together by one rebuild.
 
-## Step 0 — put this repo on GitHub
+## Step 0 — pushing to GitHub
 
 On any machine with git:
 
@@ -48,7 +49,7 @@ Why before installing: the installer will *clone* this repo, which is both the
 cleanest way to get the files into the installer environment and your first
 taste of the workflow.
 
-> **The classic flake trap:** flakes only see files **tracked by git**. A file
+> **Avoiding the "flake trap"** flakes only see files **tracked by git**. A file
 > you created but never `git add`-ed is invisible, producing baffling
 > "No such file or directory" errors. When in doubt: `git add .`
 
@@ -60,13 +61,17 @@ VirtualBox settings that matter:
 
 - **System → Enable EFI: ON.** Non-negotiable — this config uses the
   `systemd-boot` UEFI bootloader; a BIOS-mode VM cannot boot it.
-- 8 GB RAM, 4 CPUs, 60+ GB disk.
+- 8 GB RAM *(if you can allocate 16, do it, and you can un-comment-out
+  RAM-heavy builds like bambu-lab)*, 4 CPUs, 60+ GB disk.
+  *(This should also foreshadow some caveats that come with building
+  this on a virtual GPU)*
 - Display → 3D acceleration ON, video memory maxed. Hyprland is a
   GPU-rendered compositor; in a VM it runs on emulated graphics and will feel
-  sluggish. That's expected — the VM validates your *configuration*, not
-  performance. (If the mouse cursor is invisible in the VM, add
-  `cursor { no_hardware_cursors = true }` to the Hyprland settings —
-  a known VM quirk.)
+  sluggish. That's expected and should not be seen as representative of the
+  way it operates once ported to metal — the purpose of the VM is to validate
+  your *configuration*, not performance. *(Though. if the mouse cursor is 
+  invisible in the VM, add `cursor { no_hardware_cursors = true }` to the 
+  Hyprland settings)*.
 
 What the VM *cannot* test: everything in `modules/hardware.nix` that touches
 the real GPU (amdgpu, Vulkan, ROCm, Steam performance). Those options are
