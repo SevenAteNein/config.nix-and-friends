@@ -1,6 +1,13 @@
 { pkgs, ... }:
 
 {
+  ###### OprnSSH #### (to allow for tunneling from another (i.e. host) machine)
+
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = true; # should be fine for a NAT'd VM
+  };
+ 
   ###### VirtualBox ###########################################################
 
   # Builds VirtualBox's kernel module against your kernel and starts its host
@@ -15,13 +22,15 @@
   # Ollama = the inference server (downloads and runs models).
   services.ollama = {
     enable = true;
-    # Ask for AMD-GPU compute. Honest caveat: your 9070 XT's compute arch
+    # Ask for AMD-GPU compute, the 9070 XT's compute arch
     # (gfx1201) only gained official ROCm support recently, and nixpkgs' ROCm
     # can trail upstream. If models run on CPU instead of GPU, see the README's
     # "known caveats" for the fallbacks (Vulkan backend / official container).
     # Everything else about the GPU -- gaming, Vulkan, video -- is unaffected;
     # ROCm is only the compute stack.
-    acceleration = "rocm";
+    #
+    # Note: you changed this due to the depreciation of 'acceleration = "rocm";'
+    package = pkgs.ollama-rocm;
   };
 
   # Open WebUI = the browser frontend, i.e. the de-facto "Ollama GUI".

@@ -22,6 +22,7 @@
     wayland.enable = true;
   };
   services.displayManager.defaultSession = "hyprland";
+  services.xserver.xkb.layout = "de";
 
   ###### Audio ################################################################
 

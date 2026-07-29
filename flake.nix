@@ -8,6 +8,7 @@
     # A second, fast-moving package set. We cherry-pick individual apps from it
     # (Blender, MuseScore) via the overlay in configuration.nix as pkgs.unstable.<name>.
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    affinity.url = "github:mrshmllow/affinity-nix";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";

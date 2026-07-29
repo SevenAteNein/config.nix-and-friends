@@ -1,9 +1,10 @@
 { pkgs, inputs, ... }:
 
-# aggi's user environment. Everything here is applied by the same
+# Your user environment. Everything here is applied by the same
 # `rebuild` as the system -- there is no separate home-manager command to run.
+# (p.s., Aggi...keep it clean.)
 #
-# Ownership note (the thing you asked about): Home Manager only ever touches
+# Ownership note: Home Manager only ever touches
 # files that are DECLARED in this file. Every declared file becomes a symlink
 # in your home (owned by aggi) pointing at read-only content in /nix/store.
 # That read-only-ness is the reproducibility guarantee -- and also why apps
@@ -40,13 +41,14 @@
     # Hyprland installations shadowing each other.
     package = null;
     portalPackage = null;
+    configType = "hyprlang"; # emit old-style "hyperland.conf" until HM's Lua translator matures
 
     settings = {
       "$mod" = "SUPER";
 
       monitor = [ ",preferred,auto,1" ];
 
-      exec-once = [ "noctalia-shell" ];   # start the shell with the session
+      exec-once = [ "LIBGL_ALWAYS_SOFTWARE=1 noctalia" ];
 
       input = {
         kb_layout = "de";   # the resting default; fcitx5 handles switching
@@ -59,14 +61,15 @@
       };
 
       bind = [
-        "$mod, Return, exec, kitty"
+        "$mod, Return, exec, LIBGL_ALWAYS_SOFTWARE=1 kitty"
         "$mod, Q, killactive,"
         "$mod, F, fullscreen,"
         "$mod, V, togglefloating,"
 
-        # Noctalia's launcher, via its IPC interface.
+        # Noctalia's launcher;
+        # Originally you had this as "$mod, D, exec, noctalia-shell ipc call launcher toggle"
         # Explore what else is callable with: noctalia-shell ipc list
-        "$mod, D, exec, noctalia-shell ipc call launcher toggle"
+        "$mod, D, exec, noctalia msg panel-toggle launcher"
 
         # Focus movement
         "$mod, left, movefocus, l"
@@ -97,48 +100,106 @@
     };
   };
 
-  ###### Waterfox, baked in ###################################################
+  ###### LibreWolf (Waterfox-esque browser)  ###############################
 
-  # Waterfox is a Firefox fork, so Home Manager's firefox module can drive it:
-  # point the module at the Waterfox package.
   programs.firefox = {
     enable = true;
-    package = pkgs.waterfox;
+    package = pkgs.librewolf;
 
     # "Policies" = Mozilla's enterprise mechanism; enforced, not suggested.
-    policies = {
+  policies = {
       DisableTelemetry = true;
       DisablePocket = true;
       DisableFirefoxStudies = true;
-      # Extensions can be force-installed by ID via ExtensionSettings -- add
-      # later once you know which you want.
-    };
+
+      ExtensionSettings = {
+        # IDs below are exact (from your about:support).
+        # VERIFY each install_url if you encounter a roadblock
+
+        "adguardadblocker@adguard.com" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/adguard-adblocker/latest.xpi";
+          installation_mode = "normal_installed";
+        };
+        "78272b6fa58f4a1abaac99321d503a20@proton.me" = {          # Proton Pass
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi";
+          installation_mode = "normal_installed";
+        };
+        "simple-translate@sienori" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/simple-translate/latest.xpi";
+          installation_mode = "normal_installed";
+        };
+        "{f282d54d-83cc-45f5-b3e5-65888de1682b}" = {              # LibKey Nomad
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/libkey-nomad/latest.xpi";
+          installation_mode = "normal_installed";
+        };
+        "{96ef5869-e3ba-4d21-b86e-21b163096400}" = {              # Font Fingerprint Defender
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/font-fingerprint-defender/latest.xpi";
+          installation_mode = "normal_installed";
+        };
+        "firefox-extension@steamdb.info" = {                      # SteamDB
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/steamdb/latest.xpi";
+          installation_mode = "normal_installed";
+        };
+        "jid0-bnmfwWw2w2w4e4edvcdDbnMhdVg@jetpack" = {            # Tab Reloader
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/tab-reloader/latest.xpi";
+          installation_mode = "normal_installed";
+        };
+        "languagetool-webextension@languagetool.org" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/languagetool/latest.xpi";
+          installation_mode = "normal_installed";
+        };
+        "{e6e36c9a-8323-446c-b720-a176017e38ff}" = {              # Torrent Control
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/torrent-control/latest.xpi";
+          installation_mode = "normal_installed";
+        };
+        "{8ea65087-7dfb-4140-9943-6ecdf404a402}" = {              # Wiki Journey
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/wiki-journey/latest.xpi";
+          installation_mode = "normal_installed";
+        };
+        "{79875c40-ed9d-481a-a274-929daf40717d}" = {              # View (paywall remover)
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/viewfirefox/latest.xpi";
+          installation_mode = "normal_installed";
+        };
+         ### Themes  ###
+        "{b9d44adf-7e1f-4d31-b1bb-e8a4b4d6c321}" = {              # Persona 5 Animated Stars (theme)
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/persona-5-animated-stars/latest.xpi";
+          installation_mode = "normal_installed";
+        };      # closes theme
+      };        # closes ExtensionSettings
+    };          # closes policies
 
     profiles.aggi = {
       isDefault = true;
-      # These become a user.js: about:config values re-applied at every
-      # launch. Add your preferences over time.
       settings = {
         "browser.aboutConfig.showWarning" = false;
-        "signon.rememberSignons" = false;   # example: no built-in password manager
+        "signon.rememberSignons" = false;
+        # LibreWolf clears cookies on shutdown by default, which logs Proton Pass
+        # out every session -- uncomment if that bites:
+        # "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
       };
     };
-    # Honest caveat: forks occasionally relocate their profile directory. If
-    # Waterfox doesn't pick up the generated profile, the escape hatch is
-    # placing the same files under ~/.waterfox/ via home.file. Settings,
-    # extensions, search engines can be baked in; live state (cookies,
-    # history, logins) is inherently mutable and stays out of Nix's hands.
-  };
+  };            # closes programs.firefox
 
-  ###### Git (you'll want this on day one for the config repo itself) #########
+  ###### Git ###############################################################
 
   programs.git = {
     enable = true;
-    userName = "aggi";
-    userEmail = "aggi@example.org";   # <- change me
+    settings = {
+    user = {
+    name = "SevenAteNein";
+    email = "anton-august@macklin.de";
   };
+  credential.helper = "store";
+ };
+};
 
-  ###### Do not touch #########################################################
+  ###### Affinity ##########################################################
+ 
+  home.packages = [
+    pkgs.affinity-v3
+  ];
+
+  ###### BERÜHRE NICHT! ####################################################
 
   # Same idea as the system stateVersion: a data-format birthmark, set once.
   home.stateVersion = "26.05";

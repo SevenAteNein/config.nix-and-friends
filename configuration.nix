@@ -49,11 +49,15 @@
   # Spotify, Discord, VS Code, Steam etc. carry unfree licenses; Nix makes you
   # opt in explicitly rather than silently shipping proprietary software.
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "googleearth-pro-7.3.7.1155"
+  ];
 
   # The overlay that creates pkgs.unstable.<name>: a window into the
   # nixpkgs-unstable input, for the handful of apps where we want the newest
   # release instead of the stable snapshot.
   nixpkgs.overlays = [
+    inputs.affinity.overlays.default
     (final: prev: {
       unstable = import inputs.nixpkgs-unstable {
         system = prev.stdenv.hostPlatform.system;
@@ -79,11 +83,13 @@
   ###### Conveniences #########################################################
 
   environment.shellAliases = {
-    # The alias you asked about. Lives in the config, so it's versioned and
+    # The alias lives in the config, so it's versioned and
     # identical on every machine that uses this flake.
     rebuild = "sudo nixos-rebuild switch --flake /home/aggi/nixos-config#computah";
     update  = "cd /home/aggi/nixos-config && nix flake update && sudo nixos-rebuild switch --flake .#computah";
   };
+  
+  programs.kdeconnect.enable = true;
 
   ###### Do not touch #########################################################
 

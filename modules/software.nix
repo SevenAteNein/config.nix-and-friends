@@ -10,9 +10,20 @@
                  # extensions writable by VS Code's own GUI. (See "who owns my
                  # files" in the README.)
     opencode
+    btop	 # terminal system monitor: processes, kill, temps. etc
+    yazi	 # terminal file manager
+    nix-diff	 # "why did this rebuild? -- illustrates diff between two derivs
+
+    ###### utilities ##########################################################
+    impression                 # bootable disk utility
+    networkmanagerapplet   # GUI for NetworkManager connections (the VPN toggle
+			   # window 
+    gparted		   # partition manager -- for USB sticks and foreign disks
+    mission-center	   # GUI system monitor
+    kdePackages.dolphin	   # Qt/Noctalia-respecting graphical file manager
+    kdePackages.qrca	   # QR code maker and parser
 
     ###### browsers & communication ###########################################
-    waterfox               # its declarative config lives in home.nix
     tor-browser            # stable channel, deliberately unmodified: Tor's
                            # anonymity depends on every user's browser looking
                            # identical -- do not customize it, and nixpkgs does
@@ -25,18 +36,24 @@
                            #   betterdiscordctl install
                            # once, and again after Discord updates stomp it.
     protonmail-desktop
+    element-desktop	   # Matrix client, encrypted FOSS Discord substitute
+    newsflash		   # RSS reader
 
     ###### creative / media ###################################################
     unstable.blender       # newest Blender, from the unstable input
     # unstable.blender-hip # variant with AMD-GPU (HIP) Cycles rendering; not
                            # prebuilt by the cache -> long local compile, and
                            # RDNA4 compute support is bleeding-edge (README).
-    unstable.musescore     # unstable = your best shot at the 4.7.x line;
-                           # check what you actually got: mscore --version
+    unstable.musescore
+    muse-sounds-manager
     inkscape
     audacity
     obs-studio             # Wayland screen capture works via the Hyprland portal
     vlc
+    krita
+    gimp
+    bambu-studio
+    davinci-resolve
 
     ###### office & research ##################################################
     libreoffice-qt6-fresh  # the whole suite: Writer, Calc, Impress.
@@ -44,20 +61,30 @@
     hunspell               # spellcheck engine LibreOffice looks for
     hunspellDicts.de_DE
     zotero
+    obsidian		   # a de facto digital Zettelkasten, which you will eventually
+			   # make a better version of...
+    texstudio
+    texliveMedium
+    
+    ###### GIS ################################################################
+    qgis
+    googleearth-pro
 
     ###### music & misc #######################################################
     spotify
     qbittorrent
     hieroglyphic           # draw a symbol, get its LaTeX command
 
-    ###### the windows-software layer #########################################
-    wineWowPackages.staging  # "WoW" = 64-bit and 32-bit Wine together;
+    ###### windows-software translation #######################################
+    wineWow64Packages.staging  # "WoW" = 64-bit and 32-bit Wine together;
                              # staging = newer patch set
     winetricks
     bottles                # GUI Wine-prefix manager; fills the Crossover role
                            # (Crossover itself is proprietary and not packaged
                            # for NixOS -- see README)
+    ###### games ##############################################################
     heroic                 # Epic/GOG/Amazon launcher
+    prismlauncher          # open source Minecraft lanucher
   ];
 
   # Steam gets a module rather than a plain package because it needs special
