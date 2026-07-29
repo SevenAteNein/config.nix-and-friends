@@ -1,4 +1,4 @@
-# my personal NixOS config and her accoutrements, gen. 2
+# My personal NixOS config and her accoutrements,<br><sup>*gen. 2*
 
 Flake-based NixOS 26.05 for the machine `computah`, user `aggi`.
 Hyprland + Noctalia desktop, German system language, five input systems,
@@ -78,14 +78,11 @@ the real GPU (amdgpu, Vulkan, ROCm, Steam performance). Those options are
 harmless in the VM (the driver finds no hardware and idles) but only provable
 on the metal.
 
-## Step 2 — boot the ISO, become root, get online
+## Step 2 — boot the ISO, become root
 
 ```
 sudo -i
 ```
-
-Wired/VM networking is up automatically. (On the real machine, your MoCA
-Ethernet needs nothing special — the adapter presents as ordinary Ethernet.)
 
 ## Step 3 — partition and mount
 
@@ -110,12 +107,12 @@ mkdir -p /mnt/boot
 mount -o umask=077 /dev/disk/by-label/BOOT /mnt/boot
 ```
 
-Why labels: `hardware-configuration.nix` will record filesystems by
+`hardware-configuration.nix` will record filesystems by
 UUID/label, so mounting by label now keeps things unambiguous. (Later
-upgrade path: `disko` declares this partitioning *in the repo* so you never
-type it again.)
+upgrade path: `disko` declares this partitioning in the repo so it need
+not be typed again.)
 
-## Step 4 — marry the repo to this machine
+## Step 4 — Push the repo to the machine
 
 ```
 # generate the machine-specific file
@@ -131,11 +128,6 @@ cd /mnt/home/aggi/nixos-config
 cp /mnt/etc/nixos/hardware-configuration.nix .
 git add hardware-configuration.nix
 ```
-
-This is the "where everything integrates" moment: the repo carries the
-universal description of `computah`; `hardware-configuration.nix` is the one
-piece of local truth (filesystem UUIDs, required kernel modules) that welds it
-to a particular box.
 
 ## Step 5 — install and reboot
 
@@ -153,7 +145,7 @@ a terminal (SUPER+Return) and run `passwd`. Also fix ownership of the repo
 sudo chown -R aggi:users ~/nixos-config
 ```
 
-Then push the now-married hardware file back up:
+Then push the hardware file (that you should have adapted to your conditions) back up:
 
 ```
 cd ~/nixos-config && git commit -am "add computah hardware config" && git push
@@ -182,7 +174,7 @@ the VM's version (commit it — since the VM was a disposable rehearsal,
 overwriting is fine). Everything else — every package, keybind, locale —
 arrives exactly as rehearsed.
 
-## Daily workflow
+## Maintenance considerations
 
 ```
 # edit any .nix file, then:
@@ -198,22 +190,23 @@ update              # also an alias
 sudo nixos-rebuild switch --rollback
 ```
 
-## Known caveats, honestly stated
+## Known caveats
 
-- **Ollama on the 9070 XT:** gfx1201 (RDNA 4) compute support is bleeding-edge
+- Like much GUI-heavy software, **Ollama is well-optimized for AMD GPUs**.
+  gfx1201 (RDNA 4) compute support is bleeding-edge
   in ROCm, and nixpkgs' ROCm can trail upstream. If `ollama ps` shows CPU
   instead of GPU: try Ollama's experimental Vulkan backend
   (`OLLAMA_VULKAN=1` in the service's environment), or run the official
   `ollama/ollama:rocm` container. Gaming/Vulkan are unaffected either way.
-- **VirtualBox vs. newest kernel:** `linuxPackages_latest` occasionally
+- Concerning **VirtualBox**, `linuxPackages_latest` occasionally
   outruns VirtualBox's kernel module. If a rebuild fails there, wait a few
   days and `update` again, or temporarily comment VirtualBox out.
-- **MuseScore version:** `unstable.musescore` tracks nixpkgs-unstable, which
+- **`unstable.musescore` tracks nixpkgs-unstable**, which
   chases upstream 4.7.x with some lag. Check with `mscore --version`; if you
   must have today's upstream release, the AppImage via `appimage-run` is the
   stopgap.
-- **VS Code & Noctalia settings are intentionally unmanaged** so their GUIs
-  keep working. Both can be "frozen" into the config later — a one-way door
-  you choose per app, per moment.
-- **Tor Browser:** stable and unmodified on purpose. Customizing it would
-  make your fingerprint unique, defeating the tool.
+- **VS Code & Noctalia's settings are intentionally left untouched** so their GUIs
+  keep working. Both can be inducted into the config later.
+- Concerning **Tor**, it can be better to leave it unmodified. Customizing it would
+  make your fingerprint unique, defeating the philosophy and utility of the
+  browser.
