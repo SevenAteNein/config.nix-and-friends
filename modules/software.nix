@@ -13,6 +13,8 @@
     btop	 # terminal system monitor: processes, kill, temps. etc
     yazi	 # terminal file manager
     nix-diff	 # "why did this rebuild? -- illustrates diff between two derivs
+    chafa        # Terminal image-to-ASCII utility
+    discordo     # Terminal Discord client
 
     ###### utilities ##########################################################
     impression             # bootable disk utility
@@ -23,7 +25,7 @@
     kdePackages.dolphin	   # Qt/Noctalia-respecting graphical file manager
     kdePackages.qrca	   # QR code maker and parser
     fastfetch
-    chafa                  # Terminal image-to-ASCII utility
+    github-desktop
 
     ###### browsers & communication ###########################################
     tor-browser            # stable channel, deliberately unmodified: Tor's
@@ -31,21 +33,14 @@
                            # identical -- do not customize it, and nixpkgs does
                            # not package the fast-moving Alpha channel.
     signal-desktop
-    (discord.override { withOpenASAR = true; })  # OpenASAR patched in at the
-                                                 # package level = fully declarative
-    betterdiscordctl       # BetterDiscord injects into Discord's MUTABLE config
-                           # dir, so it stays imperative: run
-                           #   betterdiscordctl install
-                           # once, and again after Discord updates stomp it.
     protonmail-desktop
     element-desktop	   # Matrix client, encrypted FOSS Discord substitute
     newsflash		   # RSS reader
 
     ###### creative / media ###################################################
     unstable.blender       # newest Blender, from the unstable input
-    # unstable.blender-hip # variant with AMD-GPU (HIP) Cycles rendering; not
-                           # prebuilt by the cache -> long local compile, and
-                           # RDNA4 compute support is bleeding-edge (README).
+### unstable.blender-hip   # variant with AMD-GPU (HIP) Cycles rendering; not
+                           # cache-prebuilt, ergo long local compile. (see README)
     unstable.musescore
     muse-sounds-manager
     inkscape
@@ -57,7 +52,7 @@
 ### bambu-studio
     davinci-resolve
     ascii-draw		   # GUI image-to-ASCII utility
-    newmacs		   # Image viewer
+    nomacs		   # Image viewer
     calligraphy 	   # ASCII-art banner generation utility
 
     ###### office & research ##################################################

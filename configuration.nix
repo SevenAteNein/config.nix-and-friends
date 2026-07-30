@@ -75,9 +75,16 @@
   # This prunes generations older than 30 days, weekly, so the 4 TB drive
   # doesn't slowly fill with history you'll never boot again.
   nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
+    automatic = false;
+  };
+
+  # Nix helper (nh) - makes nix commands/aliases and package management more
+  # accessible, and allows one to "nom" on "dix"
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep 7 --keep-since 4d";
+    flake = "/home/aggi/nixos-config";
   };
 
   ###### Conveniences #########################################################
