@@ -52,11 +52,15 @@
   # (non-blurry) rendering and working IME input from fcitx5.
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  ###### Fonts ################################################################
+  ###### Cursors (system-wide presense declarations)  #########################
 
-  # A baseline that is NOT optional for you: Chinese, Arabic, and Hebrew text
-  # only renders if fonts covering those scripts exist. Noto ("no tofu" --
-  # tofu = the □□□ boxes) covers effectively every script.
+  
+
+  ###### Fonts ################################################################
+  
+  # The best for last in this module: fonts! And oh what bounty!
+  # Text in non-Latin-script languages only renders if fonts therefor exist. 
+  # Noto ("no tofu" -- tofu = the □□□ boxes) covers effectively every script.
   # Your personal standardized fonts slot in right here later; adding
   # fonts.fontconfig.defaultFonts settings then makes them the system default.
   fonts.packages = with pkgs; [

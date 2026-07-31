@@ -13,11 +13,24 @@
 # deliberately left UNdeclared here. Anything not named in this file is 100%
 # ordinary, mutable, yours.
 
+  ###### Imported homeModules #################################################
 {
-  imports = [ inputs.noctalia.homeModules.default ];
+  imports = [
+    inputs.noctalia.homeModules.default
+    inputs.nixcord.homeModules.default
+ ];
+
+  ###### Home Manager options ################################################
 
   home.username = "aggi";
   home.homeDirectory = "/home/aggi";
+   home.pointerCursor = {
+    package = pkgs.apple-cursor;
+    name = "macOS";        # verify: ls ${pkgs.apple-cursor}/share/icons
+    size = 24;
+    gtk.enable = true;
+  }; # Make a version that has a spinning snowflake instead of the quadrant circle
+
 
   ###### Noctalia (bar, dock, launcher, notifications, lock screen) ###########
 
@@ -47,6 +60,12 @@
       "$mod" = "SUPER";
 
       monitor = [ ",preferred,auto,1" ];
+      keyboard.layout = "de";
+      cursor = {
+	theme = "macOS";
+	size = 24;
+	path = "${pkgs.apple-cursor}/share/icons";
+      };
 
       exec-once = [ "LIBGL_ALWAYS_SOFTWARE=1 noctalia" ];
 
@@ -179,6 +198,61 @@
       };
     };
   };            # closes programs.firefox
+
+  ###### Nixcord (w/Equicord and OpenASAR enabled) ########################
+
+  programs.nixcord = {
+    enable = true;
+    legcord = {
+      enable = true;
+      equicord.enable = true;
+      settings = {
+	channel = "stable";
+	tray = "dynamic";
+	minimizeToTray = true;
+	mods = [ "equicord" ];
+	doneSetup = true;
+    };
+ 
+    # Theming
+### quickCss = "/* css goes here */";
+    config = {
+      useQuickCss = true;
+###   themeLinks = [
+###     "https://raw.githubusercontent.com/link/to/some/theme.css"
+###   ];
+      frameless = true;
+
+      plugins = {
+        hideMedia.enable = true;
+        ignoreActivities = {
+          enable = true;
+          ignorePlaying = true;
+          ignoredActivities = [
+            { id = "game-id"; name = "League of Legends"; type = 0; }
+          ];
+        };
+      };
+
+    # for Equicord plugins outside the  upstream plugin list
+### userPlugins = {
+###   someCoolPlugin = "github:someUser/someCoolPlugin/abc123def456...";
+
+      # Local path (requires --impure with flakes)
+###   myLocalPlugin = "/home/user/projects/myPlugin";
+
+      # Nix path literal
+###   anotherPlugin = ./plugins/anotherPlugin;
+### };
+
+### extraConfig.plugins = {
+###   someCoolPlugin.enable = true;
+###   myLocalPlugin.enable = true;
+###   anotherPlugin.enable = true;
+     };
+   }; 
+ };
+  
 
   ###### Git ###############################################################
 

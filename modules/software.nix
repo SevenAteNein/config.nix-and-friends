@@ -26,6 +26,10 @@
     kdePackages.qrca	   # QR code maker and parser
     fastfetch
     github-desktop
+    phoronix-test-suite	   # Benchmarking suite
+    mpvpaper		   # Video wallpaper plugin for wlroots-based wayland
+			   # compositors. This can fight with Noctalia's native
+			   # wallpaper system, so expect to pick only one.
 
     ###### browsers & communication ###########################################
     tor-browser            # stable channel, deliberately unmodified: Tor's

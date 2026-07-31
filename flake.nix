@@ -1,25 +1,19 @@
 {
   description = "NixOS configuration for computah";
 
+  ### Inputs ###########################################################################
   inputs = {
     # The OS base: stable, tested, updated with security fixes.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-
     # A second, fast-moving package set. We cherry-pick individual apps from it
     # (Blender, MuseScore) via the overlay in configuration.nix as pkgs.unstable.<name>.
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-   
     affinity.url = "github:mrshmllow/affinity-nix";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixcord.url = "github:4evy/nixcord";
+  }
 
-    programs.nixcord = {
-    enable = true;
-    discord = {
-      enable = true;
-      openASAR.enable = true;
-      vencord.enable = true;
-    };
-  };
-
+  ### Flake source aliases #############################################################
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       # "follows" = "use MY nixpkgs instead of downloading your own copy".
