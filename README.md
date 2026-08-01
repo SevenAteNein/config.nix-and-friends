@@ -59,7 +59,7 @@ Download the NixOS ISO (graphical or minimal, either works) from nixos.org.
 
 VirtualBox settings that matter:
 
-- **System → Enable EFI: ON.** Non-negotiable — this config uses the
+- **System → Enable (U)EFI:** Non-negotiable — this config uses the
   `systemd-boot` UEFI bootloader; a BIOS-mode VM cannot boot it.
 - 8 GB RAM *(if you can allocate 16, do it, and you can un-comment-out
   RAM-heavy builds like bambu-lab)*, 4 CPUs, 60+ GB disk.
