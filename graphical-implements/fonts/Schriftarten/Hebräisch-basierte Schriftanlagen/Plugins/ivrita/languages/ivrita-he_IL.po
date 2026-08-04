@@ -1,0 +1,251 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ivrita\n"
+"POT-Creation-Date: 2021-03-31 20:09+0300\n"
+"PO-Revision-Date: 2021-03-31 20:09+0300\n"
+"Last-Translator: Reuven Karasik <rubik@karasik.org>\n"
+"Language-Team: Reuven Karasik <rubik@karasik.org>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
+"2 : 3);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: ivrita.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: admin-settings.php:22
+msgid "Modes"
+msgstr "מצבים"
+
+#: admin-settings.php:26
+msgctxt "The option to disable neutral mode in the admin settings page"
+msgid "Disable"
+msgstr "ביטול"
+
+#: admin-settings.php:32
+msgid "Default"
+msgstr "ברירת המחדל"
+
+#: admin-settings.php:37
+msgid "Label"
+msgstr "תוית"
+
+#: admin-settings.php:51 admin-settings.php:53
+msgid "Male"
+msgstr "איש"
+
+#: admin-settings.php:58 admin-settings.php:60
+msgid "Female"
+msgstr "אישה"
+
+#: admin-settings.php:65 admin-settings.php:67
+msgid "Neutral"
+msgstr "ניטרלי"
+
+#: admin-settings.php:89
+msgid "Switch Position"
+msgstr "מיקום הסרגל"
+
+#: admin-settings.php:93
+msgid "Right"
+msgstr "ימין"
+
+#: admin-settings.php:94
+msgid "Left"
+msgstr "שמאל"
+
+#: admin-settings.php:98
+msgid "The location of the floating switch on the entire website"
+msgstr "המיקום של סרגל עבריתה ברחבי האתר."
+
+#: admin-settings.php:103
+msgid "Menu style"
+msgstr "סגנון תפריט"
+
+#: admin-settings.php:107
+msgid "Ivrita default"
+msgstr "ילדים/ות (ברירת מחדל)"
+
+#: admin-settings.php:108
+msgid "Venus & Mars"
+msgstr "סמלי נֹגה ומאדים"
+
+#: admin-settings.php:109
+msgid "Hebrew M.F.X"
+msgstr "אותיות ז/נ/א"
+
+#: admin-settings.php:110
+msgid "M.F.X"
+msgstr "אותיות ‫M/F/X"
+
+#: admin-settings.php:111
+msgid "Lips & mustache"
+msgstr "שפם ושפתיים"
+
+#: admin-settings.php:112
+msgid "Stick figures"
+msgstr "דמויות גפרורים"
+
+#: admin-settings.php:119
+msgid "Enable for roles"
+msgstr "עבריתה תפעל עבור התפקידים הבאים:"
+
+#: admin-settings.php:123
+msgid "Everyone"
+msgstr "כל מבקרי/ות האתר"
+
+#: admin-settings.php:131
+msgid "Local JS"
+msgstr "JS מקומי"
+
+#: admin-settings.php:135
+msgid "Use local JavaScript file instead of secure, cached, fast CDN"
+msgstr "שימוש בקובץ JavaScript מקומי במקום ב־CDN מאובטח, מהיר ועדכני"
+
+#: admin-settings.php:136
+msgid "Tip: Use this only if you know what you're doing!"
+msgstr "זהירות: אפשרות זו היא למתקדמות.ים!"
+
+#: admin-settings.php:140
+msgid "URL Disable Patterns"
+msgstr "כיבוי עבריתה בכתובות URL מסוימות"
+
+#: admin-settings.php:143
+msgid "(no URLs disabled by default)"
+msgstr "(ללא סינון)"
+
+#: admin-settings.php:144
+msgid ""
+"Ivrita will be disabled on URLs that match the given RegEx patterns "
+"(separated by new lines)."
+msgstr ""
+"עבריתה לא תופיע בעמודים שה־URL שלהם יתאים לתבניות הRegEx האלו (מופרדות "
+"בשורות חדשות)"
+
+#: admin-settings.php:145
+msgid ""
+"e.g. \".*(\\?|&)lang=en$\" to disable Ivrita on pages with the GET parameter "
+"\"lang=en\""
+msgstr ""
+"למשל: <code style=\"direction:ltr\">.*(\\?|&)lang=en$</code> כדי לכבות את "
+"עבריתה בעמודים שבהם יש פרמטר GET של \"lang=en\""
+
+#: admin-settings.php:150
+msgid "Disable on non-Hebrew locales"
+msgstr "כיבוי עבריתה בשפות אחרות"
+
+#: admin-settings.php:154
+msgid "Hide Ivrita on pages in other languages, based on the WordPress locale"
+msgstr "לא להציג את עבריתה בעמודים שאינם בעברית (בהסתמך על שפת הוורדפרס)"
+
+#: admin-settings.php:155
+msgid "Works with plugins like WPML, Polylang, etc."
+msgstr "עובד עם תוספים כמו WPML, Polylang וכו'."
+
+#: admin-settings.php:162 admin-settings.php:176
+msgid "Ivrita Settings"
+msgstr "הגדרות עבריתה"
+
+#: admin-settings.php:163
+msgctxt "menu title"
+msgid "Ivrita"
+msgstr "עבריתה"
+
+#: admin-settings.php:189
+msgid "Global Settings"
+msgstr "הגדרות כלליות"
+
+#: admin-settings.php:469
+msgid "Ivrita Per-Post Settings"
+msgstr "עבריתה בעמוד זה"
+
+#: admin-settings.php:486
+msgid "Disable Ivrita on:"
+msgstr "כיבוי עבריתה ב:"
+
+#: admin-settings.php:490
+msgid "The content"
+msgstr "תוכן"
+
+#: admin-settings.php:496
+msgid "The entire page"
+msgstr "כל העמוד"
+
+#: admin-settings.php:496
+msgid "(not even the sidebar and menus)"
+msgstr "(אפילו בתפריטים ווידג'טים)"
+
+#: admin-settings.php:500
+msgid "Alternative Post Titles"
+msgstr "כותרת דינאמית - עבור SEO"
+
+#: admin-settings.php:501
+msgid ""
+"Allow search engines to see the original post title, but show a custom title "
+"to each user based on their gender."
+msgstr ""
+"נאפשר למנועי חיפוש לאנדקס את כותרת הפוסט המקורית שבחרת, אך נציג כותרת מותאמת "
+"אישית לכל משתמש/ת לפי בחירתו/ה."
+
+#: admin-settings.php:504
+msgid "Use a different title for male mode"
+msgstr "שימוש בכותרת אחרת במצב איש"
+
+#: admin-settings.php:509
+msgid "Use a different title for female mode"
+msgstr "שימוש בכותרת אחרת במצב אישה"
+
+#: admin-settings.php:514
+msgid "Use a different title for neutral mode"
+msgstr "שימוש בכותרת אחרת במצב ניטרלי"
+
+#: template-toolbar.php:3
+msgid "Reference tongue:"
+msgstr "לשון פנייה:"
+
+#: template-toolbar.php:18
+msgid "Info"
+msgstr "מידע"
+
+#. Plugin Name of the plugin/theme
+msgid "Ivrita"
+msgstr "עבריתה"
+
+#. Plugin URI of the plugin/theme
+msgid "https://alefalefalef.co.il/ivrita"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Genderize your website"
+msgstr "אותו אתר, רק בשפה שלך"
+
+#. Author of the plugin/theme
+msgid "Reuven Karasik and Avraham Cornfeld"
+msgstr "ראובן קרסיק ואברהם קורנפלד"
+
+#~ msgid "Global Enable"
+#~ msgstr "הפעלה גלובלית"
+
+#~ msgid "Enable everywhere in the website"
+#~ msgstr "הפעלה בכל רחבי האתר"
+
+#~ msgid "You can turn this off/on for each post individually."
+#~ msgstr "ניתן לשנות הגדרה זו עבור כל פוסט/עמוד בנפרד."
+
+#~ msgid "The title"
+#~ msgstr "כותרת"
+
+#~ msgid "The excerpt"
+#~ msgstr "תקציר"
+
+#~ msgid "About the Ivrita project"
+#~ msgstr "אודות מיזם עבריתה"

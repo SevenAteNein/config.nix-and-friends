@@ -212,8 +212,8 @@
 	minimizeToTray = true;
 	mods = [ "equicord" ];
 	doneSetup = true;
-    };
- 
+     };
+   }; 
     # Theming
 ### quickCss = "/* css goes here */";
     config = {
@@ -228,11 +228,9 @@
         ignoreActivities = {
           enable = true;
           ignorePlaying = true;
-          ignoredActivities = [
-            { id = "game-id"; name = "League of Legends"; type = 0; }
-          ];
-        };
-      };
+###       ignoredActivities = [
+###         { id = "game-id"; name = "League of Legends"; type = 0; }
+###       ];
 
     # for Equicord plugins outside the  upstream plugin list
 ### userPlugins = {

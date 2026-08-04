@@ -20,11 +20,7 @@
 
   ###### Identity & networking ################################################
 
-  networking.hostName = "computah";
-
-  # NetworkManager handles wired DHCP out of the box. Your MoCA
-  # (Ethernet-over-coax) adapter presents itself as ordinary Ethernet,
-  # so there is nothing coax-specific to configure.
+  networking.hostName = "computah";.
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
 
@@ -98,7 +94,7 @@
   
   programs.kdeconnect.enable = true;
 
-  ###### Do not touch #########################################################
+  ###### NIIIIICHT BERÜHREN #########################################################
 
   # NOT "the version you are running". This records which release's data
   # formats (databases, state directories) this installation was born with, so
