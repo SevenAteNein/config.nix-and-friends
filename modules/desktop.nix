@@ -69,4 +69,12 @@
     noto-fonts-color-emoji
     nerd-fonts.jetbrains-mono    # monospace with the icon glyphs shell bars like to use
   ];
+
+  fonts.fontconfig.defaultFonts = {
+    serif = [ "ABC Arizona Flare" "Noto Serif Hebrew" ];
+    sansSerif = [ "Myriad Pro" "Shofar Regular" ];
+    monospace = [ "Minecraft Nerd Font" ];
+    emoji = [ "Noto Color Emoji" ];
+ 
+  };
 }
